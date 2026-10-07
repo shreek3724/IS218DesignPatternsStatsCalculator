@@ -1,6 +1,16 @@
 # IS218 Design Patterns Stats Calculator
 Extending the original OOP calculator.
 
+## Part 2 Question
+
+**Where does the construction policy of the newly added operation live?**
+
+It lives in CalculationFactory.operations in calculator/factory.py.
+
+**Explain creation versus execution without using the words factory or pattern**
+
+Creation refers to creating the calculation object that holds references to the operands and the operation, whereas executing a calculation refers to actually using the information stored in the references of the calculation object to complete the operation.
+
 ## Part 1 Questions
 
 **One corrected prediction**
