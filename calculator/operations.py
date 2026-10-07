@@ -1,6 +1,6 @@
 """Stateless mathematical operations: no prompts, files, or history."""
 from math import pow, sqrt
-# from calculator.statistics import mean, standard_deviation
+from calculator.statistics import mean, standard_deviation
 
 class Operations:
 
@@ -50,6 +50,16 @@ class Operations:
     @staticmethod
     def divide_by_factor(value, *, factor=2) -> float:
         return value / factor
+
+    # added during step 5
+    
+    @staticmethod
+    def mean(*values) -> float:
+        return mean(values)
+    
+    @staticmethod
+    def stddev(*values, ddof=1) -> float:
+        return standard_deviation(values, ddof=ddof)
 
 '''
 class Add:

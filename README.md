@@ -1,6 +1,11 @@
 # IS218 Design Patterns Stats Calculator
 Extending the original OOP calculator.
 
+## Part 5 Question
+**Explain why numeric math, file reading, construction, and display have separate homes.**
+
+This is because we need a seperation of responsibilities, to ensure abstraction can take place. This makes the program easier to change, test and modify as well.
+
 ## Part 4 Question
 **Explain why count belongs to application actions rather than mathematical Operations.**
 
