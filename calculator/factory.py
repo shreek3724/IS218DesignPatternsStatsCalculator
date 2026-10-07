@@ -28,6 +28,8 @@ class CalculationFactory:
         "sum": Operations.sum,
         "power": Operations.power,
         "divide_by_factor": Operations.divide_by_factor,
+        "mean": Operations.mean,
+        "stddev": Operations.stddev,
     }
     # this is the translation dictionary
     # doing Operations.add(#,#) would have it immediatley do the calculation
@@ -42,6 +44,7 @@ class CalculationFactory:
     allowed_options = {
     "power": {"exponent"},
     "divide_by_factor": {"factor"},
+    "stddev": {"ddof"},
     # allows the user to input power as one of the options 
     # like: CalculationFactory.create("power", 3, exponent=4)
 }

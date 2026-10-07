@@ -1,7 +1,9 @@
 """CLI prepares requests, invokes commands, and recovers from expected failures."""
+import pandas as pd
 from calculator.factory import CalculationFactory
 from calculator.session import CalculatorSession
 from calculator.commands import CalculateCommand, ClearHistoryCommand, CountCommand, HelpCommand, HistoryCommand
+from calculator.inputs import read_csv_values
 
 # added as part of part 4
 
@@ -40,8 +42,21 @@ def prepare_command(text, session):
         else:
             values.append(argument)
     arguments = values
+
+    # adding CSV reading content as part of part 5
+
+    if name == "csv":
+        if len(arguments) != 2:
+            raise ValueError("Use: csv mean/stddev PATH (a path without spaces).")
+        operation, path = arguments
+        if operation.lower() not in {"mean", "stddev"}:
+            raise ValueError("CSV supports mean or stddev.")
+        arguments = read_csv_values(path)
+        name = operation
     calculation = CalculationFactory.create(name, *arguments, **options)
     return CalculateCommand(session, calculation)
+
+    # up to here for part 5 as well, as well as change in error handling
 
 
 def run() -> None:
@@ -66,8 +81,17 @@ def run() -> None:
         except (EOFError, KeyboardInterrupt):
             print()
             break
+
+        # new error handling in part 5
+        except (ValueError, OSError, ZeroDivisionError, OverflowError,
+        pd.errors.ParserError, pd.errors.EmptyDataError) as error:
+            print(f"Error: {error}")
+
+        '''
         except (ValueError, OSError, ZeroDivisionError, OverflowError) as error:
             print(f"Error: {error}")
             # error recovery 
             # ensures the while loop continues even if an error is caught
+        '''
+
     print("Goodbye!")

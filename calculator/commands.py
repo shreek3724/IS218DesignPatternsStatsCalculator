@@ -1,7 +1,7 @@
 # added during part 4
 from abc import ABC, abstractmethod
 # from unittest import result
-HELP = "Commands: add/subtract/multiply/divide A B; square/sqrt VALUE; power VALUE exponent=N; sum VALUES; history; clear; help; exit"
+HELP = "Commands: add/subtract/multiply/divide A B; square/sqrt VALUE; power VALUE exponent=N; sum VALUES; history; clear; help; csv; exit"
 
 class Command(ABC):
     # abstraction! 
