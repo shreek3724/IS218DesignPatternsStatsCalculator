@@ -56,3 +56,63 @@ def test_factory_creates_abs_diff():
     calculation = CalculationFactory.create("abs_diff", 3, 9)
 
     assert calculation.get_result() == 6
+
+# part 3 tests, test square, sqrt, sum, wrong operand counts, and delayed domain errors. A negative real square root fails during execution.
+def test_factory_creates_square():
+    calculation = CalculationFactory.create("square", 5)
+
+    assert calculation.get_result() == 25
+
+def test_factory_rejects_wrong_square_operand_count():
+    with pytest.raises(ValueError, match="square requires exactly 1"):
+        CalculationFactory.create("square", 5, 2)
+
+def test_factory_creates_sqrt():
+    calculation = CalculationFactory.create("sqrt", 9)
+
+    assert calculation.get_result() == 3
+
+def test_factory_rejects_wrong_sqrt_operand_count():
+    with pytest.raises(ValueError, match="sqrt requires exactly 1"):
+        CalculationFactory.create("sqrt", 9, 3)
+
+def test_factory_creates_sum():
+    calculation = CalculationFactory.create("sum", 1, 2, 3, 4)
+
+    assert calculation.get_result() == 10
+
+def test_sum_requires_at_least_one_value():
+    calculation = CalculationFactory.create("sum")
+
+    with pytest.raises(ValueError, match="at least one"):
+        calculation.get_result()
+
+def test_sqrt_domain_error_is_deferred_until_execution():
+    calculation = CalculationFactory.create("sqrt", -1)
+
+    with pytest.raises(ValueError):
+        calculation.get_result()
+
+# part 3 test for power operation, and * and **
+def test_factory_power_with_exponent():
+    calculation = CalculationFactory.create("power", 3, exponent=4)
+    assert calculation.get_result() == 81
+
+# part 3 tests for divide_by_factor
+def test_divide_by_factor():
+    calculation = CalculationFactory.create("divide_by_factor", 10, factor=2)
+    assert calculation.get_result() == 5
+
+def test_divide_by_factor_rejects_unsupported_option():
+    with pytest.raises(ValueError, match="Unsupported option"):
+        CalculationFactory.create("divide_by_factor", 10, banana=5)
+
+def test_divide_by_factor_zero_factor_fails_during_execution():
+    calculation = CalculationFactory.create(
+        "divide_by_factor",
+        10,
+        factor=0
+    )
+
+    with pytest.raises(ZeroDivisionError):
+        calculation.get_result()

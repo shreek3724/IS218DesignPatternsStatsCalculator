@@ -10,7 +10,7 @@ def test_construction_defers_execution():
         calls.append((a, b))
         return a + b
 
-    calculation = Calculation(2, 3, operation)
+    calculation = Calculation([2, 3], operation)
 
     assert calls == []
     assert calculation.get_result() == 5
@@ -18,7 +18,7 @@ def test_construction_defers_execution():
 
 
 def test_zero_division_occurs_during_execution():
-    calculation = Calculation(1, 0, Operations.divide)
+    calculation = Calculation([1, 0], Operations.divide)
 
     with pytest.raises(ZeroDivisionError):
         calculation.get_result()
@@ -26,7 +26,7 @@ def test_zero_division_occurs_during_execution():
 
 def test_reject_nonfinite_result():
     with pytest.raises(ValueError, match='range'):
-        Calculation(1e+308, 1e+308, Operations.multiply).get_result()
+        Calculation([1e+308, 1e+308], Operations.multiply).get_result()
 
 
 """
@@ -38,12 +38,22 @@ and work for independent and completion tasks
 
 
 def test_stored_subtract_operation():
-    calculation = Calculation(10, 4, Operations.subtract)
+    calculation = Calculation([10, 4], Operations.subtract)
 
     assert calculation.get_result() == 6
 
 
 def test_stored_abs_diff_operation():
-    calculation = Calculation(3, 9, Operations.abs_diff)
+    calculation = Calculation([3, 9], Operations.abs_diff)
 
     assert calculation.get_result() == 6
+
+# tests added in for part 3, testing power operation!
+def test_calculation_power_uses_default_exponent():
+    calculation = Calculation([3], Operations.power)
+    assert calculation.get_result() == 9
+
+
+def test_calculation_power_forwards_exponent():
+    calculation = Calculation([3], Operations.power, exponent=4)
+    assert calculation.get_result() == 81

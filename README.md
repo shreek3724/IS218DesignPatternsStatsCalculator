@@ -1,6 +1,24 @@
 # IS218 Design Patterns Stats Calculator
 Extending the original OOP calculator.
 
+## Part 3 Questions
+
+**Why did the old a, b interface need to change?**
+
+The old a,b interface needed to change because some operations take more or less than 2 operands.
+
+**Why does the Factory still need validation even though inputs are flexible?**
+
+The factory still needs validation because people can input incorrect options or operands.
+
+**Which uses of * and ** gather, and which unpack?**
+
+"*" means to gather, when in a function definition, as it turns inputted values into a tupple, "*" means to unpack when in a call.
+
+"**" in a definition means to Gather- it gathers named arguments into a dictionary
+"**" in a call means to Unpack- it unpacks a dictionary into named arguments it can use.
+
+
 ## Part 2 Question
 
 **Where does the construction policy of the newly added operation live?**

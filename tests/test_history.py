@@ -8,7 +8,7 @@ from calculator.history import History
 def test_history_copy_protects_collection_membership():
     # a test that ensures History class protects its internal list
     history = History() # we create an object of class History to be an empty record book! 
-    calculation = Calculation(2, 3, Operations.add)
+    calculation = Calculation([2, 3], Operations.add)
     
     history.add(calculation, 5.0) # we store the test calculation and its result
     snapshot = history.get_history() # we see the copy of the real recordbook
@@ -18,7 +18,7 @@ def test_history_copy_protects_collection_membership():
 
 def test_history_objects_are_shared_by_the_shallow_copy():
     history = History()
-    calculation = Calculation(2, 3, Operations.add)
+    calculation = Calculation([2, 3], Operations.add)
     history.add(calculation, 5.0)
     snapshot = history.get_history()
     assert snapshot[0][0] is calculation
