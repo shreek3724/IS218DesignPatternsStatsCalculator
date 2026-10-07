@@ -1,5 +1,5 @@
 """Stateless mathematical operations: no prompts, files, or history."""
-# from math import pow, sqrt
+from math import pow, sqrt
 # from calculator.statistics import mean, standard_deviation
 
 class Operations:
@@ -26,6 +26,30 @@ class Operations:
     def abs_diff(a, b) -> float:
         """Calculates the absolute difference between two numbers."""
         return abs(a - b)
+
+    #added as a part of part 3
+    @staticmethod
+    def square(value) -> float:
+            return value ** 2
+    
+    @staticmethod
+    def sqrt(value) -> float:
+        return sqrt(value)
+    
+    
+    @staticmethod
+    def sum(*values) -> float:
+        if not values:
+            raise ValueError("Enter at least one value.")
+        return sum(values)
+
+    @staticmethod
+    def power(value, *, exponent=2) -> float:
+        return pow(value, exponent)
+
+    @staticmethod
+    def divide_by_factor(value, *, factor=2) -> float:
+        return value / factor
 
 '''
 class Add:

@@ -2,6 +2,23 @@
 from math import isfinite
 from calculator.validation import numeric_values
 
+# new updated version as part of part 3
+# allows for flexible inputs 
+
+class Calculation:
+    def __init__(self, values, operation, **options):
+        self.values = numeric_values(values)
+        self.operation = operation
+        self.options = dict(options)
+
+    def get_result(self) -> float:
+        result = float(self.operation(*self.values, **self.options))
+        # *self.values unpacks the list of values into individual arguments for the operation to use!
+        if not isfinite(result):
+            raise ValueError("Result is outside the supported range.")
+        return result
+
+'''
 # updated calculation code in part 2 to match up with the factory
 
 class Calculation:
@@ -19,6 +36,7 @@ class Calculation:
             raise ValueError("Result is outside the supported range.")
         return result
 
+'''
 
 '''
 class Calculation:
