@@ -1,6 +1,11 @@
 # IS218 Design Patterns Stats Calculator
 Extending the original OOP calculator.
 
+## Part 4 Question
+**Explain why count belongs to application actions rather than mathematical Operations.**
+
+Operations deals with mathematics, but count does not deal with that, instead it needs acess to history and state.
+
 ## Part 3 Questions
 
 **Why did the old a, b interface need to change?**

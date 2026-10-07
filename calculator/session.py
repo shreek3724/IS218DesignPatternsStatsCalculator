@@ -1,0 +1,25 @@
+"""Execute calculations and record successful results through History."""
+from calculator.history import History
+
+#added during part 4
+
+class CalculatorSession: # this is a class we can create SESSION OBJECTS from
+    def __init__(self):
+        self._history = History()
+        # controls how calculations are recorded
+
+    def calculate(self, calculation) -> float:
+        result = calculation.get_result()
+        self._history.add(calculation, result)
+        return result
+
+    def get_history(self):
+        return self._history.get_history()
+
+    def clear(self) -> None:
+        self._history.clear()
+
+    # indepdent problem addition made for part 4
+    def count(self) -> int:
+        """returns the total number of saved successful calculations"""
+        return len(self.get_history())
